@@ -1,9 +1,9 @@
-import clientPromise from '@/lib/mongodb'
+import getClient from "@/lib/mongodb"
 import { item } from '@/lib/rssparse';
 import { Summer } from './ai';
 export  async function AiSum() {
 
-    const client = await clientPromise;
+    const client = await getClient();
     const db = client.db("rssnews")
     const coll = db.collection<item>("news")
 

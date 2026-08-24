@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import clientPromise from "@/lib/mongodb";
+import getClient from "@/lib/mongodb";
 export async function GET(req: Request) {
     try {
 
-        const client = await clientPromise;
+        const client = await getClient();
         const db = client.db("rssnews")
         const coll = db.collection("ainews")
         console.log(await coll.countDocuments());

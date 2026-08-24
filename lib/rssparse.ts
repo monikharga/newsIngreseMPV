@@ -1,8 +1,7 @@
-import client from '@/lib/mongodb'
 import axios from 'axios'
 import Parser from 'rss-parser'
 import { NextResponse } from "next/server"
-import clientPromise from '@/lib/mongodb'
+import getClient from "@/lib/mongodb"
 import {AiSum} from './sum'
 
 
@@ -17,7 +16,7 @@ const parser = new Parser()
 export async function ParseRss() {
     const arr: item[] = []
     try {
-        const client = await clientPromise;
+        const client = await getClient();
         const db = client.db("rssnews")
         const coll = db.collection("news")
         // parse RSS feed

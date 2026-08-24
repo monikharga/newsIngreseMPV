@@ -1,7 +1,7 @@
 import { item } from "@/lib/rssparse"
 import { GoogleGenAI } from "@google/genai"
 import { console } from "inspector";
-import clientPromise from '@/lib/mongodb'
+import getClient from "@/lib/mongodb"
 import { json } from "stream/consumers";
 
 const ai = new GoogleGenAI({
@@ -10,7 +10,7 @@ const ai = new GoogleGenAI({
 
 export async function Summer() {
     try {
-        const client = await clientPromise;
+        const client = await getClient();
         const db = client.db("rssnews")
         const coll = db.collection<item>("ainews")
         const coll2 = db.collection<item>("news")
