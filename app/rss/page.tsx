@@ -12,6 +12,8 @@ export default function Rss() {
         try {
             const res = await axios.get("/api/front");
             setArr(res.data.arr);
+            console.log(res.data.arr);
+            
         } catch (err) {
             console.error(err);
         }
