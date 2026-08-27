@@ -27,11 +27,13 @@ export async function Summer() {
                 contents: `You are a news editor.
 
                 Create:
-                1. A short catchy headline (maximum 15 words) don't copy headline from other source make or change diffrently headline .
+                1. A short catchy headline (maximum 15 words) don't copy headline from other source or from the rss feed from where this article take make or change diffrently headline .
                 2. A concise summary (maximum 150 words)
 
                 Rules:
                 - Only use information provided in the article.
+                - Don't copy same hadline which take from database .
+                - Stricy modify and create unique new headline.
                 - Do not add facts or opinions.
                 - Do not use markdown.
                 - Do not create sections or bullet points.
