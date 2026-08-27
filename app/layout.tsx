@@ -25,7 +25,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${fraunces.variable} ${dmSans.variable} h-full antialiased`}
     >
-{/* <meta name="google-site-verification" content="zVH-xzBqKu9U3W9ymBEpuEpTH295oldGR8IL06FZIP4" />      <body className="">{children}</body> */}
+{/* <meta name="google-site-verification" content="zVH-xzBqKu9U3W9ymBEpuEpTH295oldGR8IL06FZIP4" />     */}
+  <body className="">{children}</body>
     </html>
   );
 }
