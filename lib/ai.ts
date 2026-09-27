@@ -27,8 +27,9 @@ export async function Summer() {
                 contents: `You are a news editor.
 
                 Create:
-                1. A short catchy headline (maximum 15 words) don't copy headline from other source or from the rss feed from where this article take make or change diffrently headline .
-                2. A concise summary (maximum 150 words)
+                1. A short catchy headline (maximum 10 words) don't copy headline or title from other source or from the rss feed from where this article took.
+                2. Create new headline or title
+                3. A concise summary (maximum 150 words)
 
                 Rules:
                 - Only use information provided in the article.

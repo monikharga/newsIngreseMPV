@@ -1,27 +1,20 @@
-'use client'
-
-import axios from "axios";
-import { item } from "../../lib/rssparse";
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import LoadMore from "@/app/rss/load-more";
+import ScrollMemory from "@/app/rss/scroll-memory";
+import { item } from "@/lib/rssparse";
 
-export default function Rss() {
-    const [arr, setArr] = useState<item[]>([]);
-
-    const fetc = async () => {
-        try {
-            const res = await axios.get("/api/front");
-            setArr(res.data.arr);
-            console.log(res.data.arr);
-            
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
-    useEffect(() => {
-        fetc();
-    }, []);
+export default function Rss({
+    items,
+    page,
+    hasMore,
+    total,
+}: {
+    items: item[];
+    page: number;
+    hasMore: boolean;
+    total: number;
+}){
+   
 
     return (
         <main className="min-h-screen bg-[#F4F0E6] text-[#241B2F]">
@@ -62,7 +55,7 @@ export default function Rss() {
                         <span className="h-5 w-px bg-[#241B2F]" />
 
                         <span className="font-[var(--font-body)] text-sm font-semibold">
-                            {arr.length} stories
+                            {total} stories
                         </span>
 
                     </div>
@@ -121,7 +114,7 @@ export default function Rss() {
                         </h2>
 
                         <span className="font-[var(--font-body)] text-xs font-bold uppercase tracking-widest">
-                            01 — {arr.length.toString().padStart(2, "0")}
+                            01 — {total.toString().padStart(2, "0")}
                         </span>
 
                     </div>
@@ -131,7 +124,7 @@ export default function Rss() {
 
                     <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
 
-                        {arr.map((e, index) => (
+                        {items.map((e, index) => (
 
                             <Link
                                 key={e.guid}
@@ -217,7 +210,9 @@ export default function Rss() {
                         ))}
 
                     </div>
+                        <LoadMore page={page} hasMore={hasMore} />
 
+                    <ScrollMemory />
                 </div>
 
             </section>
