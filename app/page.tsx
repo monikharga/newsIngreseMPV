@@ -1,4 +1,4 @@
-import Rss from "@/app/rss/page";
+import Rss from "@/app/rss/rss-view";
 import { getPages, PAGE_SIZE } from "@/lib/news";
 import { item } from "@/lib/rssparse";
 
