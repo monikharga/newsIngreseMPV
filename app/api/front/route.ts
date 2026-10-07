@@ -1,5 +1,18 @@
 import { NextResponse } from "next/server";
+import { createHash } from "node:crypto";
 import getClient from "@/lib/mongodb";
+
+function uriFingerprint() {
+    const uri = process.env.MONGODB_URI?.trim();
+    if (!uri) return "MONGODB_URI missing";
+    try {
+        const u = new URL(uri);
+        return `user=${u.username} host=${u.hostname} len=${uri.length} sha=${createHash("sha256").update(uri).digest("hex").slice(0, 16)}`;
+    } catch {
+        return `unparseable len=${uri.length} sha=${createHash("sha256").update(uri).digest("hex").slice(0, 16)}`;
+    }
+}
+
 export async function GET(req: Request) {
     try {
 
@@ -20,7 +33,8 @@ export async function GET(req: Request) {
 
         return NextResponse.json({ message: "hello", arr })
     } catch (err) {
-        console.log(err);
+        console.log("uri fingerprint:", uriFingerprint());
+        console.log(err instanceof Error ? `${err.name}: ${err.message}` : err);
 
         return NextResponse.json({ message: "error is " }, { status: 500 })
     }
